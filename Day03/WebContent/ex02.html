@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex02.html</title>
+</head>
+<body>
+	<h1>image 태그</h1>
+	<hr/>
+	<p>img는 웹 페이지의 이미지를 붙여 넣는 태그</p>
+	<!--웹 브라우저에서 F12는 개발자 도구-->
+	<img src="src/dora.png"/>
+
+	<!--width : 너비를 설정, 높이도 비율에 맞게 같이 수정됨-->
+	<img src="src/dora.png" width="250"/>
+
+	<!--height : 높이를 설정, 너비도 비율에 맞게 같이 수정됨-->
+	<img src="src/dora.png" height="150">
+
+	<!-- 너비와 높이를 같이 주면 비율이 깨질 수 있기 때문에 권장하지 않는다.-->
+	<img src="src/dora.png" height="150" width="250">
+
+	<hr>
+
+	<!--alt : 이미지가 없을 때 대체하는 구문을 작성-->
+	<img src="src/dora2.png" alt="없는 이미지 입니다!!" style="color: red;"/>
+
+	<!--title : 이미지에 마우스를 올리면(hover) 해당 메시지를 출력합니다.(툴팁)-->
+	<img src="src/dora.png" title="도라에몽입니다."/>
+
+	<a href="https://search.naver.com/search.naver?sm=tab_hty.top&where=image&query=%EB%8F%84%EB%9D%BC%EC%97%90%EB%AA%BD&oquery=%EB%8F%84%EB%9D%BC%EC%97%A0%EC%98%A4&tqi=hJPAidprvxsssea9UysssssssJZ-292167">
+		<img src="src/dora.png" title="클릭시 네이버 검색으로 이동합니다.">
+	</a>
+</body>
+</html>
