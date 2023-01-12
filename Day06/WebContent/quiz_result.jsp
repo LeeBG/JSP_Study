@@ -32,32 +32,56 @@
 				new Account("root","123","관리자"),
 				new Account("user","1","유저1")
 		};
-	
-	
-		public String showMsg(String id, String pw){
-			String msg  = "로그인 실패!!!";
-			
-			for(Account a:accs){
-				boolean sameId = a.getId().equals(id);
-				boolean samePw = a.getPw().equals(pw);
-				if(sameId && samePw){
-					 msg = a.getNick()+"님이 로그인 했습니다.";
+		
+		// 첫번째 getter를 이용한 멤버변수의 값 비교(String의 equals)
+		public Account login(Account acc){
+			for(int i=0;i<accs.length;i++){
+				
+				String accsId = accs[i].getId();
+				String accsPw = accs[i].getPw();
+				
+				String userId = acc.getId();
+				String userPw = acc.getPw();
+				
+				boolean isSameId = accsId.equals(userId);
+				boolean isSamePw = accsPw.equals(userPw);
+				
+				if(isSameId && isSamePw){
+					return accs[i];
 				}
 			}
-			return msg;
+			return null;
+		}
+		// 두번째 방법 : hashCode와 equals를 오버라이딩해서 객체 비교 
+		public Account login2(Account acc){
+			for(int i=0;i<accs.length;i++){
+				boolean isSame = accs[i].equals(acc);
+				
+				if(isSame){
+					return accs[i];
+				}
+			}
+			return null;
 		}
 	%>
 	
 	<%
 		request.setCharacterEncoding("UTF-8");
-		String req_id = request.getParameter("id");
-		String req_pw = request.getParameter("pw");
-		String msg = showMsg(req_id, req_pw);
 	%>
 	
 	<jsp:useBean id="acc" class="beans.Account"></jsp:useBean>
+	<%-- Account acc = new Account(); --%>
 	<jsp:setProperty property="*" name="acc"/>
 
+	<%
+		acc = login2(acc);
+	
+		String msg = "로그인 실패";
+		
+		if(acc != null){
+			msg = acc.getNick()+"이(가) 로그인 했습니다.";
+		}
+	%>
 	<h1>로그인 결과</h1>
 	<hr/>
 	

@@ -18,7 +18,7 @@
 		position: relative;
 		border-radius: 20px;
 		border: 1px solid gray;
-		width: 180px;
+		width: 150px;
 		height: 50px;
 		font-size: 30px;
 		background-color: skyblue;
