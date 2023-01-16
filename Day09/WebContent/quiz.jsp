@@ -17,7 +17,8 @@
 </style>
 </head>
 <body>
-
+	<h1>로그인 - 세션, 쿠키</h1>
+	<hr/>
 	<%--
 		quiz.jsp		로그인 폼을 작성 .메서드는 POST
 						ID, PW, 자동완성 체크박스
@@ -39,6 +40,7 @@
 	 	Cookie[] cookies = request.getCookies();
 	 	String cookie_id, cookie_pw;
 	 	cookie_id = cookie_pw = "";
+	 	
 	 	if (session.getAttribute("user")!=null){
 	 		Account user = (Account)session.getAttribute("user");
 	 		out.print("<h3>"+user.getNick()+"님 로그인 중</h3>");
@@ -58,8 +60,7 @@
 	 	}
 	 %>
 
-	 <h1>로그인 - 세션, 쿠키</h1>
-	<hr/>
+
 	 <fieldset>
 	 	<legend>로그인</legend>
 	 	<form action="quiz_login.jsp">

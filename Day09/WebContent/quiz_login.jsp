@@ -39,26 +39,28 @@
 	<%
 		String msg = "로그인 실패";
 		String store = request.getParameter("store");
-	
+		String req_id = request.getParameter("id");
+		String req_pw = request.getParameter("pw");
+		
+		Cookie[] cookies = new Cookie[]{
+				new Cookie("id",req_id),
+				new Cookie("pw",req_pw),
+				new Cookie("store",store)
+		};
+		
+		for(int i=0;i<cookies.length;i++){
+			cookies[i].setMaxAge(0);
+			if("yes".equals(store)){
+				cookies[i].setMaxAge(60*60*24*7);
+			}
+			response.addCookie(cookies[i]);
+		}
+		
 		user = login(user);
 		
 		if(user != null){
 			session.setAttribute("user", user);
 			msg = user.getNick()+"님 로그인 성공";
-			
-			Cookie[] cookies = new Cookie[]{
-					new Cookie("id",user.getId()),
-					new Cookie("pw",user.getPw()),
-					new Cookie("store",store)
-			};
-			
-			for(int i=0;i<cookies.length;i++){
-				cookies[i].setMaxAge(0);
-				if("yes".equals(store)){
-					cookies[i].setMaxAge(60*60*24*7);
-				}
-				response.addCookie(cookies[i]);
-			}
 		}
 	%>
 	<h1>로그인 결과</h1>
