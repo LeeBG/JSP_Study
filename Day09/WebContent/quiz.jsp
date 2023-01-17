@@ -14,6 +14,7 @@
 		display: inline-block;
 	}
 	
+	
 </style>
 </head>
 <body>
@@ -40,10 +41,12 @@
 	 	Cookie[] cookies = request.getCookies();
 	 	String cookie_id, cookie_pw;
 	 	cookie_id = cookie_pw = "";
-	 	
+	 	String msg = "로그인 중 아님";
+	 	String myPage = "";
 	 	if (session.getAttribute("user")!=null){
 	 		Account user = (Account)session.getAttribute("user");
-	 		out.print("<h3>"+user.getNick()+"님 로그인 중</h3>");
+	 		msg = user.getNick()+"님 로그인 중";
+	 		myPage = "(내 정보)";
 	 	}
 	 	
 	 	if (cookies!=null){
@@ -60,15 +63,27 @@
 	 	}
 	 %>
 
-
+	<h3>
+		<%=msg %>
+		<a style="text-decoration: none" href="quiz_mypage.jsp"><%=myPage %></a>
+	</h3>
+	
 	 <fieldset>
-	 	<legend>로그인</legend>
-	 	<form action="quiz_login.jsp">
+	 	<legend>로그인 폼</legend>
+	 	<form action="quiz_login.jsp" method="POST">
+	 		
 	 		<p><input name="id" type="text" placeholder="ID입력" value="<%=cookie_id%>"></p>
 	 		<p><input name="pw" type="password" placeholder="PW입력" value="<%=cookie_pw%>"></p>
 	 		<input name="store" type="checkbox" value="yes" checked/>
+	 		<% if(session.getAttribute("user")==null){ %>
 	 		<button>로그인</button>
+	 		<%}else{ %>
+	 		<a href="quiz_logout.jsp">
+	 			<button type="button">로그아웃</button>
+	 		</a>
+	 		<%} %>
 	 	</form>	
 	 </fieldset>
+	 
 </body>
 </html>

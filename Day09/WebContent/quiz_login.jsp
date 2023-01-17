@@ -35,7 +35,7 @@
 	%>
 	<%request.setCharacterEncoding("utf-8");%>
 	<jsp:useBean id="user" class="beans.Account"></jsp:useBean>
-	<jsp:setProperty property="*" name="user"/>
+	<jsp:setProperty property="*" name="user"/><%--*는 member와Parameter명이 같은 모든것을 의미한다. --%>
 	<%
 		String msg = "로그인 실패";
 		String store = request.getParameter("store");
@@ -70,5 +70,11 @@
 	<a href="quiz.jsp">
 		<button>login</button>
 	</a>
+	<script>
+		var msg = '<%=msg%>';
+		
+		alert(msg);
+		location.href = 'quiz.jsp';
+	</script>
 </body>
 </html>
