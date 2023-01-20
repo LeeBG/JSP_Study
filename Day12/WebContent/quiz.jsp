@@ -15,13 +15,18 @@
 	body {
 		text-align: center;
 	}
+	
 	table {
+		display: inline-block;
 		border-collapse: collapse;
-		text-align : center;
 	}
-	th td {
+	
+	th, td {
 		border: 1px solid black;
-		padding : 10px 15px;
+		padding: 10px 15px;
+	}
+	div {
+		padding : 100px 100px;
 	}
 </style>
 <title>quiz</title>
@@ -37,9 +42,9 @@
 			String user = "c##itbank";
 			String password = "it";
 			
-			Connection conn;
-			Statement stmt;
-			ResultSet rs;
+			Connection conn;	// 연결객체
+			Statement stmt;		// sql 실행 객체
+			ResultSet rs;		// 결과를 담는 결과 집합
 			
 			// 2. 드라이버 로딩
 			Class.forName(driver);// 라이브러리를 불러온다
@@ -49,7 +54,8 @@
 			conn = DriverManager.getConnection(url, user, password);
 			stmt= conn.createStatement(); // sql 실행 객체를 만들어라
 			
-			String sql = "select * from book";
+			String sql = "select book_title, book_author, book_pub, book_date, book_price from book"
+			+" order by book_title";
 			rs = stmt.executeQuery(sql);
 			
 			ArrayList <BookDto> list = new ArrayList<BookDto>();
@@ -64,32 +70,30 @@
 				list.add(row);
 			}
 	%>
-	
+	<div>
 	<table>
-		<thead>
-			<tr>
-				<th>책이름</th>
-				<th>작가</th>
-				<th>출판사</th>
-				<th>출판일</th>
-				<th>가격</th>
-			</tr>
-		</thead>
-		<tbody>
+		<tr>
+			<th>책이름</th>
+			<th>작가</th>
+			<th>출판사</th>
+			<th>출판일</th>
+			<th>가격</th>
+		</tr>
 		<%for(BookDto row : list) { %>
-			<tr>
-				<td><%=row.getBook_title() %><td>
-				<td><%=row.getBook_author() %><td>
-				<td><%=row.getBook_pub() %><td>
-				<td><%=row.getBook_date() %><td>
-				<td><%=row.getBook_price() %><td>
-			</tr>
+		<tr>
+			<td><%=row.getBook_title() %></td>
+			<td><%=row.getBook_author() %></td>
+			<td><%=row.getBook_pub() %></td>
+			<td><%=row.getBook_date() %></td>				
+			<td><%=row.getBook_price() %>원</td>
+		</tr>
 		 <% } 
+		// DB접근은 꼭 닫아줘야한다.(역순으로 닫아줘야한다.)
+			rs.close();
+			stmt.close();
 		 	conn.close();
-		 	stmt.close();
-		 	rs.close();
 		 %>		
-		</tbody>
 	</table>
+	</div>
 </body>
 </html>

@@ -9,6 +9,11 @@ public class BookDto {
 	private Date book_date;
 	private Integer book_price;
 	
+	@Override
+	public String toString() {
+		return "BookDto [book_title=" + book_title + ", book_author=" + book_author + ", book_pub=" + book_pub
+				+ ", book_date=" + book_date + ", book_price=" + book_price + "]";
+	}
 	public String getBook_title() {
 		return book_title;
 	}
