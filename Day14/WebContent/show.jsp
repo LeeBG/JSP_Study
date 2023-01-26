@@ -63,6 +63,7 @@
 	<ul>
 		<li><a href="<%=login %>"><%=loginBtn %></a></li>
 		<li><a href="join.jsp">회원가입</a></li>
+		<li><a href="myPage.jsp">내정보</a>
 	</ul>
 	
 	<table>
@@ -81,8 +82,8 @@
 		<%for(AccountDTO row : list) { %>
 			<tr>
 				<td><%=row.getIdx() %></td>
-				<td><%=row.getUserId() %></td>
-				<td><%=row.getUserPw() %></td>
+				<td><%=row.getUserid() %></td>
+				<td><%=row.getUserpw() %></td>
 				<td><%=row.getNick() %></td>
 				<td><%=row.getName() %></td>
 				<td><%=row.getEmail() %></td>

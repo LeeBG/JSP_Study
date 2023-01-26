@@ -25,8 +25,8 @@
 		location.href = 'show.jsp';
 	</script>
 	<ul>
-		<li><%=input.getUserId() %></li>
-		<li><%=input.getUserPw() %></li>
+		<li><%=input.getUserid() %></li>
+		<li><%=input.getUserpw() %></li>
 		<li><%=input.getNick() %></li>
 		<li><%=input.getName() %></li>
 		<li><%=input.getEmail() %></li>

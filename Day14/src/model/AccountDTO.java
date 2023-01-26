@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class AccountDTO {
 	private int idx;
-	private String userId;
-	private String userPw;
+	private String userid;
+	private String userpw;
 	private String nick;
 	private String name;
 	private String email;
@@ -21,17 +21,17 @@ public class AccountDTO {
 	public void setIdx(int idx) {
 		this.idx = idx;
 	}
-	public String getUserId() {
-		return userId;
+	public String getUserid() {
+		return userid;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
-	public String getUserPw() {
-		return userPw;
+	public String getUserpw() {
+		return userpw;
 	}
-	public void setUserPw(String userPw) {
-		this.userPw = userPw;
+	public void setUserpw(String userpw) {
+		this.userpw = userpw;
 	}
 	public String getNick() {
 		return nick;

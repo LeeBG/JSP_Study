@@ -17,8 +17,8 @@ public class AccountDAO extends DAO {
 			while(rs.next()) {
 				AccountDTO row = new AccountDTO();
 				row.setIdx(rs.getInt("idx"));
-				row.setUserId(rs.getString("userid"));
-				row.setUserPw(rs.getString("userpw"));
+				row.setUserid(rs.getString("userid"));
+				row.setUserpw(rs.getString("userpw"));
 				row.setNick(rs.getString("nick"));
 				row.setName(rs.getString("name"));
 				row.setEmail(rs.getString("email"));
@@ -27,7 +27,7 @@ public class AccountDAO extends DAO {
 			}
 			return list;
 		} catch (SQLException e) {
-			System.out.println("SelectAll() ì—ëŸ¬ : " + e.getMessage());
+			System.out.println("SelectAll() ¿¡·¯ : " + e.getMessage());
 		} finally {
 			close();
 		}
@@ -35,17 +35,17 @@ public class AccountDAO extends DAO {
 		return null;
 	}
 	
-	// 1. stmtë¥¼ ì‚¬ìš©ì‹œ : ë³€í™”ê°€ ë§Žì€ êµ¬ë¬¸ì—ì„œ ì†ë„ê°€ ë–¨ì–´ì§€ë©° ë³´ì•ˆì„±ì´ ë–¨ì–´ì§„ë‹¤.
+	// 1. stmt¸¦ »ç¿ë½Ã : º¯È­°¡ ¸¹Àº ±¸¹®¿¡¼­ ¼Óµµ°¡ ¶³¾îÁö¸ç º¸¾È¼ºÀÌ ¶³¾îÁø´Ù.
 	public AccountDTO selectOne1(AccountDTO input) {
 		String sql = "select * from account "
 				+ "where userid = '%s' and userpw = '%s'";
-		sql  = String.format(sql, input.getUserId(), input.getUserPw());
+		sql  = String.format(sql, input.getUserid(), input.getUserpw());
 		try {
 			conn = DriverManager.getConnection(url,user,password);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			
-			// id,pwì¼ì¹˜í•˜ëŠ” ê²ƒì€ í•˜ë‚˜ ë°–ì— ì—†ê¸° ë•Œë¬¸ì´ë‹¤.
+			// id,pwÀÏÄ¡ÇÏ´Â °ÍÀº ÇÏ³ª ¹Û¿¡ ¾ø±â ¶§¹®ÀÌ´Ù.
 			rs.next();
 			
 			AccountDTO row = new AccountDTO();
@@ -55,32 +55,32 @@ public class AccountDAO extends DAO {
 			row.setJoin_Date(rs.getDate("join_date"));
 			row.setName(rs.getString("name"));
 			row.setNick(rs.getString("nick"));
-			row.setUserId(rs.getString("userid"));
-			row.setUserPw(rs.getString("userpw"));
+			row.setUserid(rs.getString("userid"));
+			row.setUserpw(rs.getString("userpw"));
 			
 			return row;
 			
 		} catch (SQLException e) {
-			System.out.println("selectOne() ì˜ˆì™¸ : "+e.getMessage());
+			System.out.println("selectOne() ¿¹¿Ü : "+e.getMessage());
 		}finally {
 			close();
 		}
 		return null;
 	}
 
-	// 2. pstmtë¥¼ ì‚¬ìš©ì‹œ : ë³€í™”ê°€ ë§Žì€ êµ¬ë¬¸ì—ì„œ ì†ë„ê°€ ì¦ê°€í•˜ë©°, SQL Injectionì„ ë°©ì§€
+	// 2. pstmt¸¦ »ç¿ë½Ã : º¯È­°¡ ¸¹Àº ±¸¹®¿¡¼­ ¼Óµµ°¡ Áõ°¡ÇÏ¸ç, SQL InjectionÀ» ¹æÁö
 	public AccountDTO selectOne2(AccountDTO input) {
 		String sql = "select * from account  "
 				+ "where userid = ? and userpw = ?";
 		// 						  1				 2
-		// pstmt ëŠ” sqlêµ¬ë¬¸ì´ ë¯¸ë¦¬ ìžë£Œí˜•ì„ ì§€ì •í•˜ì§€ ì•ŠëŠ”ë‹¤.
+		// pstmt ´Â sql±¸¹®ÀÌ ¹Ì¸® ÀÚ·áÇüÀ» ÁöÁ¤ÇÏÁö ¾Ê´Â´Ù.
 		
 		try {
 			conn = DriverManager.getConnection(url, user, password);
-			pstmt = conn.prepareStatement(sql); // ë¯¸ë¦¬ sqlêµ¬ë¬¸ì„ ë§Œë“¤ì–´ ë†“ëŠ”ë‹¤.
+			pstmt = conn.prepareStatement(sql); // ¹Ì¸® sql±¸¹®À» ¸¸µé¾î ³õ´Â´Ù.
 			
-			pstmt.setString(1, input.getUserId()); // setìžë£Œí˜•(index, ê°’)
-			pstmt.setString(2, input.getUserPw()); // - í•´ë‹¹ indexì— ë°ì´í„°ë¥¼ ì „ë‹¬
+			pstmt.setString(1, input.getUserid()); // setÀÚ·áÇü(index, °ª)
+			pstmt.setString(2, input.getUserpw()); // - ÇØ´ç index¿¡ µ¥ÀÌÅÍ¸¦ Àü´Þ
 			
 			rs = pstmt.executeQuery();
 			
@@ -93,13 +93,13 @@ public class AccountDAO extends DAO {
 			row.setJoin_Date(rs.getDate("join_date"));
 			row.setName(rs.getString("name"));
 			row.setNick(rs.getString("nick"));
-			row.setUserId(rs.getString("userid"));
-			row.setUserPw(rs.getString("userpw"));
+			row.setUserid(rs.getString("userid"));
+			row.setUserpw(rs.getString("userpw"));
 			
 			return row;
 			
 		} catch (SQLException e) {
-			System.out.println("selectOne ì˜ˆì™¸ : "+ e.getMessage());
+			System.out.println("selectOne ¿¹¿Ü : "+ e.getMessage());
 		}finally {
 			close();
 		}
@@ -107,8 +107,8 @@ public class AccountDAO extends DAO {
 		return null;
 	}
 
-	// 3. insert, update deleteëŠ” ì‹¤í–‰ í›„ ë³€ê²½ëœ í–‰ ê°¯ìˆ˜ë¥¼ ì •ìˆ˜ë¡œ ë°˜í™˜
-	// â€» selectëŠ” ì‹¤í–‰ í›„ tableì˜ ê²°ê³¼ë¥¼ ResultSetìœ¼ë¡œ ë°˜í™˜
+	// 3. insert, update delete´Â ½ÇÇà ÈÄ º¯°æµÈ Çà °¹¼ö¸¦ Á¤¼ö·Î ¹ÝÈ¯
+	// ¡Ø select´Â ½ÇÇà ÈÄ tableÀÇ °á°ú¸¦ ResultSetÀ¸·Î ¹ÝÈ¯
 	public int insert(AccountDTO input) {
 		
 		String sql  = "insert into"
@@ -117,19 +117,19 @@ public class AccountDAO extends DAO {
 		try {
 			conn = DriverManager.getConnection(url, user, password);
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, input.getUserId());
-			pstmt.setString(2, input.getUserPw());
+			pstmt.setString(1, input.getUserid());
+			pstmt.setString(2, input.getUserpw());
 			pstmt.setString(3, input.getNick());
 			pstmt.setString(4, input.getName());
 			pstmt.setString(5, input.getEmail());
 			
 			int row = pstmt.executeUpdate();	
-			// insert, update, deleteëŠ” ëª¨ë‘ excuteUpdate();
-			// selectëŠ” executeQuery() => ResultSetì„ ë°˜í™˜
+			// insert, update, delete´Â ¸ðµÎ excuteUpdate();
+			// select´Â executeQuery() => ResultSetÀ» ¹ÝÈ¯
 			
 			return row;
 		} catch (SQLException e) {
-			System.out.println("insert ì˜ˆì™¸ :" + e.getMessage());
+			System.out.println("insert ¿¹¿Ü :" + e.getMessage());
 		}finally {
 			close();
 		}
@@ -137,6 +137,49 @@ public class AccountDAO extends DAO {
 		return 0;
 	}
 
+	public int update(AccountDTO input) {
+		
+		String sql = "update account "
+				+ "set userpw=?, email=? "
+				+ "where idx=?";
+		try {
+			conn = DriverManager.getConnection(url, user, password);
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,input.getUserpw());
+			pstmt.setString(2, input.getEmail());
+			pstmt.setInt(3, input.getIdx());
+			
+			return pstmt.executeUpdate();// ½ÇÇàµÈ Çà °á°ú °¹¼ö¸¦ ¹ÝÈ¯ÇÑ´Ù.
+			
+		} catch (SQLException e) {
+			System.out.println("update ¿¹¿Ü : "+ e.getMessage());
+		} finally {
+			close();
+		}
+		
+		return 0;
+	}
+
+	public int delete(int idx) {
+		String sql = "delete from account where idx = ?";
+		
+		try {
+			conn = DriverManager.getConnection(url, user, password);
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, idx);
+			
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("delete ¿¹¿Ü : "+ e.getMessage());
+		}finally {
+			close();
+		}
+		
+		return 0;
+		
+	}
 }
 
 
