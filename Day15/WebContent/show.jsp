@@ -38,10 +38,12 @@
 	<%
 		AccountDAO dao = new AccountDAO();
 		List<AccountDTO> users = dao.selectAll();
+		AccountDTO user = (AccountDTO)session.getAttribute("user");
+		String msg = user == null ? "로그인 중 아님" : user.getNick()+"님 로그인 중" ;
 	%>
 	<h1>Account 테이블</h1>
 	<hr/>	
-	
+	<h3><%=msg %></h3>
 	<h3>Account 모든 테이블을 출력</h3>
 	<table>
 		<thead>
@@ -70,10 +72,11 @@
 		</tbody>
 	</table>
 	
-		<ul>
+	<ul>
 		<li><a href="login.jsp" >로그인</a></li>
 		<li><a href="join.jsp" >회원가입</a></li>
 		<li><a href="myPage.jsp" >내정보</a></li>
+		<li><a href="logout.jsp">로그아웃</a></li>
 	</ul>
 </body>
 </html>

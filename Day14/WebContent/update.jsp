@@ -15,9 +15,7 @@
 	<%
 		AccountDAO dao = new AccountDAO();
 		
-		System.out.println(input.getIdx());
-		System.out.println(input.getEmail());
-		System.out.println(input.getUserpw());
+
 		
 		int row = dao.update(input);
 		
