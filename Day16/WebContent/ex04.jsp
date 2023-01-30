@@ -19,11 +19,23 @@
 	</form>
 	
 	<hr/>
-	<%if(request.getParameter("gugu")!=null){ %>
-	<h3>${param.gugu }단 계산</h3>
-	<%for(int i =1; i <10;i++){ %>
+	<%
+	String gugu = request.getParameter("gugu");
+	if(gugu !=null){ 
+	%>
+		<h3>${param.gugu }단 계산</h3>
+		<%for(int i =1; i <10;i++){ %>
 			<p>${param.gugu } x <%=i %> = <%=(Integer.parseInt(request.getParameter("gugu")))*i %><p>
 		<% }
-	}%>
+	 }%>
+	 
+	 <hr/>
+	 <%-- EL은 자바의 변수에 접근하는 것이 아니라 attribute에 접근하는 것 --%>
+	 <%for(int i = 1; i <= 9; i++){ 
+	 	pageContext.setAttribute("i", i);%>
+	 
+	 <p>${param.gugu } x ${i } = ${param.dan * i}<p>
+	 	
+	 <% } %>
 </body>
 </html>
