@@ -1,4 +1,4 @@
-<%@page import="model.AccountDTO"%>
+<%@page import="model.dto.AccountDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="model.AccountDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

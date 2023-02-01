@@ -9,7 +9,7 @@
 </head>
 <body>
 	<% request.setCharacterEncoding("utf-8"); %>
-	<jsp:useBean id="input" class="model.AccountDTO"/>
+	<jsp:useBean id="input" class="model.dto.AccountDTO"/>
 	<jsp:setProperty property="*" name="input"/>
 	
 	<%

@@ -16,11 +16,30 @@ header nav {
     width: 30%;
 }
 
+
 header ul {
     list-style: none;
     padding: 0;
     display: flex;
     justify-content: space-between;
+}
+
+a {
+	text-decoration: none;
+}
+
+.myPage {
+	display: flex;
+	justify-content: center;
+}
+
+.myPage table {
+	border-collapse: collapse
+}
+
+.myPage th .myPage td {
+	border: 1px solid black;
+	padding: 5px 10px;
 }
 
 .board {
@@ -41,6 +60,11 @@ header ul {
 .board tr:nth-child(n+2):hover {
     background-color: rgba(0, 0, 0, 0.057);
 }
+
+.userInfo {
+	text-align: right;
+}
+
 
 footer {
     /*background-color: blue;*/

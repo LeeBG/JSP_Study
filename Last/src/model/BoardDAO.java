@@ -28,6 +28,8 @@ public class BoardDAO extends DAO{
 			return list;
 		} catch (SQLException e) {
 			System.err.println("selectAll()¿¡·¯ : " + e.getMessage());
+		} finally {
+			close();
 		}
 		return null;
 	}

@@ -8,7 +8,7 @@
 <title>delete.jsp</title>
 </head>
 <body>
-	<jsp:useBean id="input" class="model.AccountDTO"/>
+	<jsp:useBean id="input" class="model.dto.AccountDTO"/>
 	<jsp:setProperty property="*" name="input"/>
 	<%
 		AccountDAO dao = new AccountDAO();
