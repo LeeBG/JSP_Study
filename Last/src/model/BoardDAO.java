@@ -112,6 +112,8 @@ public class BoardDAO extends DAO{
 			return row;
 		} catch (SQLException e) {
 			System.err.println("상세보기 에러:" + e.getMessage());
+		}finally {
+			close();
 		}
 		return null;
 	}

@@ -5,8 +5,11 @@
 <c:set var="board" value="${dao.selectOne(param.idx) }"/>
         <div class="container">
             <!-- 인증 + 권한이 필요함 c:if -->
-            <a href="#" class="btn btn-warning" >수정</a>
-            <button class="btn btn-danger">삭제</button>
+            <c:if test="${board.idx == param.idx }">
+            	<a href="#" class="btn btn-warning" >수정</a>
+            	<button class="btn btn-danger">삭제</button>
+            </c:if>
+            
             <br />
             <br />
             <h6 class="m-2">
