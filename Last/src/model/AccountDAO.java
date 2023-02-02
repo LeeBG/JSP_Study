@@ -35,4 +35,30 @@ public class AccountDAO extends DAO{
 		return null;
 	}
 
+	
+	public int insert(AccountDTO input) {
+		
+		String sql = 
+				"insert into "
+				+ "account(userid,userpw,email,nick,name)"
+				+ " values(?, ?, ?, ?, ?)";
+		
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, input.getUserid());
+			pstmt.setString(2, input.getUserpw());
+			pstmt.setString(3, input.getEmail());
+			pstmt.setString(4, input.getNick());
+			pstmt.setString(5, input.getName());
+			
+			return pstmt.executeUpdate(); 
+		} catch (SQLException e) {
+			System.err.println("insert¿¡·¯ : "+e.getMessage());
+		} finally {
+			close();
+		}
+		
+		return  0;
+	}
 }

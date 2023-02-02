@@ -5,6 +5,8 @@
 
     <div class="container">
 	<form action="loginPro.jsp" method="post" >
+		<h2 style="text-align: center">로그인</h2>
+		
 		<div class="form-group">
 			<input type="text" name="userid" id="userid"  class="form-control" placeholder="Enter UserId"  required/>
 		</div>
@@ -14,8 +16,10 @@
 		</div>
 
 		<br/>
-		<p><button type="submit" class="btn btn-primary">로그인</button></p>
-		<p><a href="join.jsp"><button type="button" class="btn btn-primary">회원가입</button></a></p>
+		<button type="submit" class="btn btn-primary">로그인</button>
+		<a href="join.jsp">
+		<button type="button" class="btn btn-primary">회원가입</button>
+		</a>
 	</form>
 </div>
 

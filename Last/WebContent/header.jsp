@@ -5,10 +5,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>loginForm</title>
+<title>LAST</title>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="${cpath }/css/style.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
@@ -26,7 +28,6 @@
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </head>
 <body>
-	
 	<div class="container">
 		<div class="userInfo">
 			${user.nick }
@@ -43,9 +44,9 @@
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link"
-						href="#">HOME</a></li>
+						href="${cpath }">HOME</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="#">BOARD</a></li>
+						href="${cpath }/board/view.jsp?page=1">BOARD</a></li>
 					
 					<li class="nav-item">
 					<a class="nav-link"

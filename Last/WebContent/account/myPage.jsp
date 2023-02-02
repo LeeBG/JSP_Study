@@ -43,7 +43,7 @@
       </tr>
     </tbody>
   </table>
-  <button onclick="onClick()">이전 페이지</button>
+  <button class="btn btn-primary" onclick="onClick()">이전 페이지</button>
 </div>
 <script>
 	function onClick(){
