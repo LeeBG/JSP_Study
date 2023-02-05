@@ -2,40 +2,40 @@ package service;
 
 public class Paging {
 	/*
-	 * 512°³ÀÇ ÆäÀÌÁö¸¦ °¡Áø´Ù
-	 * ÃÑ ÆäÀÌÁö ¼ö : totalPage
+	 * 512ê°œì˜ í˜ì´ì§€ë¥¼ ê°€ì§„ë‹¤
+	 * ì´ í˜ì´ì§€ ìˆ˜ : totalPage
 	 * 512 / perCount
 	 * 512 / 20
 	 * 25
 	 * ... 12
 	 * 
 	 * 
-	 * ³ª¸ÓÁö 12°³ÀÇ ±ÛÀ» Ãâ·ÂÇÒ ÆäÀÌÁö°¡ 1°³ ´õ ÇÊ¿ä
+	 * ë‚˜ë¨¸ì§€ 12ê°œì˜ ê¸€ì„ ì¶œë ¥í•  í˜ì´ì§€ê°€ 1ê°œ ë” í•„ìš”
 	 * totalPage += (total % perCount == 0) ? 0 : 1;
 	 * totalPage = 26;
 	 * 
 	 * 
-	 * 2. »ç¿ëÀÚ°¡ ¿äÃ»ÇÑ ÆäÀÌÁö¿¡ µû¶ó¼­ ±Û ¹üÀ§ ±¸ÇÏ±â
-	 * -- ÃÖ½Å ÆäÀÌÂ¡ Äõ¸®
+	 * 2. ì‚¬ìš©ìê°€ ìš”ì²­í•œ í˜ì´ì§€ì— ë”°ë¼ì„œ ê¸€ ë²”ìœ„ êµ¬í•˜ê¸°
+	 * -- ìµœì‹  í˜ì´ì§• ì¿¼ë¦¬
 		select * from board
 		order by idx desc
-		offset [offset] rows -- ½ÃÀÛÀ§Ä¡¸¦ Á¤ÇÔ(0ºÎÅÍ ½ÃÀÛ)
+		offset [offset] rows -- ì‹œì‘ìœ„ì¹˜ë¥¼ ì •í•¨(0ë¶€í„° ì‹œì‘)
 		fetch first [perCount] rows only;
 	 * 
-	 * »ç¿ëÀÚ°¡ ¿äÃ»ÇÑ ÆäÀÌÁö
+	 * ì‚¬ìš©ìê°€ ìš”ì²­í•œ í˜ì´ì§€
 	 * reqPage = 1,2,3...
 	 */
 	
-	private int total;		// ÀüÃ¼ °Ô½Ã±Û ¼ö
-	private int perCount = 20;	// ÆäÀÌÁö´ç ±Û ¼ö
-	private int totalPage;	// ÃÑ ÆäÀÌÁö ¼ö
+	private int total;		// ì „ì²´ ê²Œì‹œê¸€ ìˆ˜
+	private int perCount = 20;	// í˜ì´ì§€ë‹¹ ê¸€ ìˆ˜
+	private int totalPage;	// ì´ í˜ì´ì§€ ìˆ˜
 	private int requestPage;
-	private int offset;		// °Ô½Ã±ÛÀ» ÀÚ¸¦ ½ÃÀÛ À§Ä¡
-	private int perPage = 10;	// ÇÑÈ­¸é¿¡ º¸ÀÏ ÆäÀÌÁö ¼ö
+	private int offset;		// ê²Œì‹œê¸€ì„ ìë¥¼ ì‹œì‘ ìœ„ì¹˜
+	private int perPage = 10;	// í•œí™”ë©´ì— ë³´ì¼ í˜ì´ì§€ ìˆ˜
 	private int section;
 	private int begin,end;
 	
-	// »ı¼ºÀÚ
+	// ìƒì„±ì
 	public Paging(int requestPage,int total) {
 		this.total = total;
 		this.requestPage = requestPage;

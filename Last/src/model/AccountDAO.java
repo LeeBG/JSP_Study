@@ -27,8 +27,7 @@ public class AccountDAO extends DAO{
 			
 			return row;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("login()ì—ëŸ¬ : "+ e.getMessage());
 		}finally {
 			close();
 		}
@@ -54,7 +53,7 @@ public class AccountDAO extends DAO{
 			
 			return pstmt.executeUpdate(); 
 		} catch (SQLException e) {
-			System.err.println("insert¿¡·¯ : "+e.getMessage());
+			System.err.println("insert() ì—ëŸ¬: "+e.getMessage());
 		} finally {
 			close();
 		}

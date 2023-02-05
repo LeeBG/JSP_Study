@@ -25,9 +25,9 @@ public class DAO {
 		try {
 			ct = new InitialContext();
 			ds = (DataSource) ct.lookup("java:comp/env/jdbc/oracle");
-			// ÀÌ°ÍÀ» ÀĞ¾î¿À¸é ¹Ì¸® Ä¿³Ø¼ÇÀ» µé°í ¿Â´Ù.
+			// ì´ê²ƒì„ ì½ì–´ì˜¤ë©´ ë¯¸ë¦¬ ì»¤ë„¥ì…˜ì„ ë“¤ê³  ì˜¨ë‹¤.
 		} catch (NamingException e) {
-			System.err.println("»ı¼ºÀÚ ¿¹¿Ü : "+ e.getMessage());
+			System.err.println("ìƒì„±ì ì˜ˆì™¸ : "+ e.getMessage());
 		} finally {
 			close();
 		}
@@ -53,7 +53,7 @@ public class DAO {
 			
 			return rs.getString("banner");
 		} catch (SQLException e) {
-			System.out.println("test ¿¡·¯ :"+e.getMessage());
+			System.out.println("test ì—ëŸ¬ :"+e.getMessage());
 		}finally {
 			close();
 		}

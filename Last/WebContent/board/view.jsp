@@ -13,11 +13,12 @@
 	 
 <div class="container">
     <div class="m-2">
-        <form class="form-inline d-flex justify-content-end" action="#">
+        <form class="form-inline d-flex justify-content-end" action="${cpath }/board/search.jsp" method="get">	
             <input type="hidden" name="***" value="search" /> 
             <input type="hidden" name="page" value="0" /> 
             <input type="text" name="keyword" class="form-control mr-sm-2" placeholder="Search">
             <button class="btn btn-primary m-1">검색</button>
+            <a href="${cpath }/board/post.jsp"><button class="btn btn-primary m-1" type="button">글 쓰기</button></a>
         </form>
         </div>
         <!-- page -->
@@ -69,7 +70,7 @@
             
             <!-- 마지막 페이지 <li class="page-item disabled"><a class="page-link" href="#">Next</a></li> -->
             <c:if test="${param.page < pg.totalPage }">
-            <li class="page-item"><a class="page-link" href="${cpath }/board/view.jsp?page=${param.page - 1}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="${cpath }/board/view.jsp?page=${param.page + 1}">Next</a></li>
 			</c:if>
 			<c:if test="${param.page >= pg.totalPage }">
             <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>

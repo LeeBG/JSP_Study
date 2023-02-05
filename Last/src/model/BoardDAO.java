@@ -11,6 +11,7 @@ import service.Paging;
 
 public class BoardDAO extends DAO{
 
+	// ë©”ì¸í™”ë©´ì—ì„œ ë³´ì—¬ì¤„ ìµœì‹ ê¸€ 20ê°œ(ê³ ì •)
 	public List<BoardDTO> selectAll(){
 		String sql = "select * from board " + 
 				"order by idx desc " + 
@@ -20,7 +21,7 @@ public class BoardDAO extends DAO{
 			conn = ds.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-			List<BoardDTO> list = new ArrayList<BoardDTO>(); // ¾÷Ä³½ºÆÃ
+			List<BoardDTO> list = new ArrayList<BoardDTO>();
 			while(rs.next()) {
 				BoardDTO row = new BoardDTO();
 				row.setContents(rs.getString("contents"));
@@ -33,14 +34,14 @@ public class BoardDAO extends DAO{
 			}
 			return list;
 		} catch (SQLException e) {
-			System.err.println("selectAll()¿¡·¯ : " + e.getMessage());
+			System.err.println("selectAll()ì—ëŸ¬ : " + e.getMessage());
 		} finally {
 			close();
 		}
 		return null;
 	}
 	
-	
+	// Boardë¦¬ìŠ¤íŠ¸ì—ì„œ ë³´ì—¬ì¤„ ìµœì‹ ê¸€ + í˜ì´ì§•
 	public List<BoardDTO> selectAll(int page){
 		String sql = "select * from board " + 
 				"order by idx desc " + 
@@ -55,7 +56,7 @@ public class BoardDAO extends DAO{
 			pstmt.setInt(1, pg.getOffset());
 			pstmt.setInt(2, pg.getPerCount());
 			rs = pstmt.executeQuery();
-			List<BoardDTO> list = new ArrayList<BoardDTO>(); // ¾÷Ä³½ºÆÃ
+			List<BoardDTO> list = new ArrayList<BoardDTO>(); // ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½
 			while(rs.next()) {
 				BoardDTO row = new BoardDTO();
 				row.setContents(rs.getString("contents"));
@@ -68,13 +69,14 @@ public class BoardDAO extends DAO{
 			}
 			return list;
 		} catch (SQLException e) {
-			System.err.println("selectAll(page)¿¡·¯ : " + e.getMessage());
+			System.err.println("selectAll(page)ì—ëŸ¬ : " + e.getMessage());
 		} finally {
 			close();
 		}
 		return null;
 	}
 	
+	// board ì´ ê°¯ìˆ˜
 	public int boardCount() {
 		String sql = "select count(*) as count from board";
 		try {
@@ -85,13 +87,14 @@ public class BoardDAO extends DAO{
 			
 			return rs.getInt("count");
 		} catch (SQLException e) {
-			System.err.println("count¿¡·¯" + e.getMessage());
+			System.err.println("count ì—ëŸ¬" + e.getMessage());
 		}finally {
 			close();
 		}
 		return 0;
 	}
 	
+	// í•˜ë‚˜ì˜ ê²Œì‹œê¸€ ìƒì„¸ë³´ê¸°
 	public BoardDTO selectOne(int idx) {
 		
 		String sql = "select * from board where idx = ?";
@@ -111,7 +114,7 @@ public class BoardDAO extends DAO{
 			
 			return row;
 		} catch (SQLException e) {
-			System.err.println("»ó¼¼º¸±â ¿¡·¯:" + e.getMessage());
+			System.err.println("ìƒì„¸ë³´ê¸° ì—ëŸ¬:" + e.getMessage());
 		}finally {
 			close();
 		}
@@ -133,7 +136,7 @@ public class BoardDAO extends DAO{
 			pstmt.setInt(1, pg.getOffset());
 			pstmt.setInt(2, pg.getPerCount());
 			rs = pstmt.executeQuery();
-			List<BoardDTO> list = new ArrayList<BoardDTO>(); // ¾÷Ä³½ºÆÃ
+			List<BoardDTO> list = new ArrayList<BoardDTO>();
 			while(rs.next()) {
 				BoardDTO row = new BoardDTO();
 				row.setContents(rs.getString("contents"));
@@ -148,11 +151,29 @@ public class BoardDAO extends DAO{
 			map.put("pg", pg);
 			return map;
 		} catch (SQLException e) {
-			System.err.println("selectAll(page)¿¡·¯ : " + e.getMessage());
+			System.err.println("selectAll(page)ì—ëŸ¬ : " + e.getMessage());
 		} finally {
 			close();
 		}
 		return null;
 	}
 	
+	public int save(BoardDTO input) {
+		String sql = "insert into " + 
+				"board(title, contents, writer) "
+				+ "values(?, ?, ?) ";
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, input.getTitle());
+			pstmt.setString(2, input.getContents());
+			pstmt.setString(3, input.getWriter());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("saveì—ëŸ¬ : "+e.getMessage());
+		} finally {
+			close();
+		}	
+		return 0;
+	}
 }
