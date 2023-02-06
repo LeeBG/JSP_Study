@@ -43,8 +43,8 @@
 | 15 | 16일차 | JSP EL표현식 사용법 | [바로가기][day16] |
 | 16 | 17일차 | JSP JSTL 사용법 | [바로가기][day17] |
 | 17 | 18일차 | JSP 게시판 만들기 1일차 | [바로가기][day18] |
-| 18 | 19일차 |  | [바로가기][day19] |
-| 19 | 20일차 |  | [바로가기][day20] |
+| 18 | 19일차 | JSP 게시판 만들기 2일차 | [바로가기][day19] |
+| 19 | 20일차 | JSP 게시판 만들기 3일차 | [바로가기][day20] |
 
 ## 따로 만들어보기
 | 번호 | 일차 | 내용 | 소스코드 | 
@@ -68,8 +68,8 @@
 [day15]: ./Day15/WebContent/
 [day16]: ./Day16/WebContent/
 [day17]: ./Day17/WebContent/
-[day18]: ./Day18/WebContent/
-[day19]: ./Day19/WebContent/
-[day20]: ./Day20/WebContent/
-[etc]: ./ETC/WebContent/
+[day18]: ./Last/WebContent/
+[day19]: ./Last/WebContent/
+[day20]: ./Last/WebContent/
+[etc]: ./MVC/WebContent/
 
