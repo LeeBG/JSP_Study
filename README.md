@@ -1,4 +1,4 @@
-#  자바 공부 내용 정리
+#  JSP 공부 내용 정리
 
 # Language 
 - [![자바로고](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white)](https://www.oracle.com/kr/java/)
